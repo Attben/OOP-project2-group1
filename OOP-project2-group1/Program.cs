@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics; //Stopwatch
 using System.Threading;
 
 namespace MJU20BreakoutClone
+
 {
     class Program
     {
