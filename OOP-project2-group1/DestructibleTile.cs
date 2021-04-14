@@ -6,10 +6,10 @@ namespace MJU20BreakoutClone
 {
     class DestructibleTile : Tile
 {
-        public void destroy()
+        // "| , -" Char example for tiles
+        public void Destroy()
         {
-            //ascii explosion
-            //get removed from tile list in GamePlane
+            //NYI
         }
 }
 }

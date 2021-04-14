@@ -6,6 +6,6 @@ namespace MJU20BreakoutClone
 {
     class IndestructibleTile : Tile
 {
-
-}
+        // "| , -" Char example for tiles
+    }
 }

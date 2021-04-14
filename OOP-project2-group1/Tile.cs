@@ -6,6 +6,7 @@ namespace MJU20BreakoutClone
 {
     abstract class Tile : Rectangle
     {
-        
+        protected bool isDestructible;
+
     }
 }
