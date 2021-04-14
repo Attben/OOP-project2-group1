@@ -5,7 +5,9 @@ using System.Text;
 namespace MJU20BreakoutClone
 {
     class IndestructibleTile : Tile
-{
+    {
         // "| , -" Char example for tiles
+        
+        public IndestructibleTile(string ascii) : base(ascii) { }
     }
 }
