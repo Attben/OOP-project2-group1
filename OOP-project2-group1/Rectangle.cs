@@ -1,10 +1,5 @@
 ﻿using System;
-
-
-
 using System.Collections.Generic;
-
-
 
 namespace MJU20BreakoutClone
 {
@@ -30,6 +25,7 @@ namespace MJU20BreakoutClone
             this.Height = height;
             
         }
+        /*
         private Rectangle[] MakeRectangle()
         {
 
@@ -44,6 +40,7 @@ namespace MJU20BreakoutClone
                 }
             }
         }
+        */
         private bool IsCollisionDetected(Rectangle rect1, Rectangle rect2)
         {
             if (rect1.X < rect2.X + rect2.Width &&
