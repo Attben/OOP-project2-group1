@@ -4,8 +4,8 @@ using System.Text;
 
 namespace MJU20BreakoutClone
 {
-    class IndestructibleTile : Tile
-{
-
-}
+    abstract class Tile : Rectangle
+    {
+        
+    }
 }
