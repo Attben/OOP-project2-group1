@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace MJU20BreakoutClone
@@ -23,22 +23,7 @@ namespace MJU20BreakoutClone
             this.Height = height;
             
         }
-        /*
-        private Rectangle[] MakeRectangle()
-        {
-
-        }
-        public void DrawRectangle(Rectangle[,] rect )
-        {
-            for (int i = 0; i < length; i++)
-            {
-                for (int i = 0; i < length; i++)
-                {
-
-                }
-            }
-        }
-        */
+        
         public bool CollidesWith(Rectangle rect2)
         {
             if(rect2 == null)

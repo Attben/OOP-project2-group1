@@ -12,7 +12,8 @@ namespace MJU20BreakoutClone
         
         public void Destroy()
         {
-            //NYI
+            //NYI | explosion?
+            graphicalRepresentation = "";
         }
     }
 }

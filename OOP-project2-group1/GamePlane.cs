@@ -35,8 +35,6 @@ namespace MJU20BreakoutClone
                 tiles[0, n] = new IndestructibleTile("║", 0, n);
                 tiles[width-1, n] = new IndestructibleTile("║", width-1, n);
             }
-            //var rectangleListofBorders = new List<Rectangle>;
-            //Rectangle MygameplaneArea = new Rectangle();
         }
         
         public void RenderObjects()

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics; //Stopwatch
 using System.Threading;
@@ -10,7 +10,7 @@ namespace MJU20BreakoutClone
     class Program
     {
         private static GamePlane gamePlane;
-        const double targetFrameRate = 60.0;
+        const double targetFrameRate = 30.0;
         const long millisecondsPerSecond = 1000;
         const long targetFrameDelay = (long)(millisecondsPerSecond / targetFrameRate);
         
@@ -37,7 +37,7 @@ namespace MJU20BreakoutClone
             Console.CursorVisible = false;
             
             //Initialize game state
-            gamePlane = new GamePlane(50, 20); //Arbitrary placeholder values
+            gamePlane = new GamePlane(Console.WindowWidth, Console.WindowHeight);
             bool running = true;
             Stopwatch stopwatch = Stopwatch.StartNew();
             long previousFrameTime;
