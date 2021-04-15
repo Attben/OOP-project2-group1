@@ -14,17 +14,17 @@ namespace MJU20BreakoutClone
         const long millisecondsPerSecond = 1000;
         const long targetFrameDelay = (long)(millisecondsPerSecond / targetFrameRate);
         
-        static void getGameInputs()
+        static void GetGameInputs()
         {
             //NYI
         }
         
-        static void updateGameState(double deltatime)
+        static void UpdateGameState(double deltatime)
         {
-            //NYI
+            gamePlane.UpdateGameState(deltatime);
         }
         
-        static void renderGame()
+        static void RenderGame()
         {
             //TODO: Only re-render locations that have changed since the last frame
             gamePlane.RenderObjects();
@@ -37,7 +37,7 @@ namespace MJU20BreakoutClone
             Console.CursorVisible = false;
             
             //Initialize game state
-            gamePlane = new GamePlane(20, 10);
+            gamePlane = new GamePlane(50, 20); //Arbitrary placeholder values
             bool running = true;
             Stopwatch stopwatch = Stopwatch.StartNew();
             long previousFrameTime;
@@ -51,14 +51,13 @@ namespace MJU20BreakoutClone
                 long frameDelay = currentFrameTime - previousFrameTime;
                 double deltatime = (double)frameDelay;
                 
-                getGameInputs();
-                updateGameState(deltatime);
-                renderGame();
+                GetGameInputs();
+                UpdateGameState(deltatime);
+                RenderGame();
                 
                 if(frameDelay < targetFrameDelay)
                 {
-                    //Thread.Sleep((int)(targetFrameDelay - frameDelay));
-                    Thread.Sleep(2000);
+                    Thread.Sleep((int)(targetFrameDelay - frameDelay));
                 }
             }
         }
