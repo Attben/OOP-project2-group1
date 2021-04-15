@@ -5,22 +5,20 @@ namespace MJU20BreakoutClone
 {
     abstract class Rectangle
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        public int Width { get; set; }
-
-        public int Height { get; set; }
+        public double xPos { get; set; }
+        public double yPos { get; set; }
+        public uint Width { get; set; }
+        public uint Height { get; set; }
         #region MyRegion
 
         //TODO: En array med rektangelns alla egenskaper? används i Collision detection
         //TODO: EN tvådimentionel array av typen Rectangle som ritas på consolen'
 
         #endregion
-        public Rectangle(int x , int y, int width, int height)
+        public Rectangle(double x , double y, uint width, uint height)
         {
-            this.X = x;
-            this.Y = y;
+            this.xPos = x;
+            this.yPos = y;
             this.Width = width;
             this.Height = height;
             
@@ -41,15 +39,18 @@ namespace MJU20BreakoutClone
             }
         }
         */
-        private bool IsCollisionDetected(Rectangle rect1, Rectangle rect2)
+        public bool CollidesWith(Rectangle rect2)
         {
-            if (rect1.X < rect2.X + rect2.Width &&
-                rect1.X + rect1.Width > rect2.X &&
-                rect1.Y < rect2.Y + rect2.Height &&
-                rect2.Y + rect1.Height > rect2.Y)
+            if(rect2 == null)
+            {
+                return false; //Can't collide with nothing.
+            }
+            if (this.xPos < rect2.xPos + rect2.Width &&
+                this.xPos + this.Width > rect2.xPos &&
+                this.yPos < rect2.yPos + rect2.Height &&
+                rect2.yPos + this.Height > rect2.yPos)
             {
                 return true;
-
             }
             return false;
         }

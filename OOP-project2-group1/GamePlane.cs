@@ -17,23 +17,23 @@ namespace MJU20BreakoutClone
             tiles = new Tile[width, height];
             
             //Corners
-            tiles[0, 0] = new IndestructibleTile("╔");
-            tiles[width-1, 0] = new IndestructibleTile("╗");
-            tiles[0, height-1] = new IndestructibleTile("╚");
-            tiles[width-1, height-1] = new IndestructibleTile("╝");
+            tiles[0, 0] = new IndestructibleTile("╔", 0, 0);
+            tiles[width-1, 0] = new IndestructibleTile("╗", width-1, 0);
+            tiles[0, height-1] = new IndestructibleTile("╚", 0, height-1);
+            tiles[width-1, height-1] = new IndestructibleTile("╝", width-1, height-1);
             
             //Top and bottom
             for(int n = 1; n < (width - 1); ++n)
             {
-                tiles[n, 0] = new IndestructibleTile("═");
-                tiles[n, height-1] = new IndestructibleTile("═");
+                tiles[n, 0] = new IndestructibleTile("═", n, 0);
+                tiles[n, height-1] = new IndestructibleTile("═", n, height-1);
             }
             
             //Left and right
             for(int n = 1; n < (height - 1); ++n)
             {
-                tiles[0, n] = new IndestructibleTile("║");
-                tiles[width-1, n] = new IndestructibleTile("║");
+                tiles[0, n] = new IndestructibleTile("║", 0, n);
+                tiles[width-1, n] = new IndestructibleTile("║", width-1, n);
             }
             //var rectangleListofBorders = new List<Rectangle>;
             //Rectangle MygameplaneArea = new Rectangle();
@@ -45,7 +45,8 @@ namespace MJU20BreakoutClone
             Console.SetCursorPosition(0, 0);
             //Console.WriteLine("x: " + balls[0].xPos);
             //Console.WriteLine("y: " + balls[0].yPos);
-            for(int height = 0; height < tiles.GetLength(1); ++height){
+            for(int height = 0; height < tiles.GetLength(1); ++height)
+            {
                 for(int width = 0; width < tiles.GetLength(0); ++width)
                 {
                     string charsToRender = 
@@ -68,8 +69,26 @@ namespace MJU20BreakoutClone
         {
             foreach(Ball b in balls)
             {
+                //Save old position so the ball can be put back
+                //if the movement makes it collide with a solid tile.
+                double oldX = b.xPos;
                 b.MoveX(deltatime);
+                //Tile xAdjacentTile = tiles[(int)b.xPos + 1*Math.Sign(b.xSpeed), (int)b.yPos];
+                if(b.CollidesWith(tiles[(int)b.xPos, (int)b.yPos]))
+                {
+                    //Collided in x-direction. Reverse xSpeed and put the ball back.
+                    b.xSpeed *= -1.0;
+                    b.xPos = oldX;
+                }
+                
+                double oldY = b.yPos;
                 b.MoveY(deltatime);
+                //Tile yAdjacentTile = tiles[(int)b.xPos, (int)b.yPos + 1*Math.Sign(b.ySpeed)];
+                if(b.CollidesWith(tiles[(int)b.xPos, (int)b.yPos]))
+                {
+                    b.ySpeed *= -1.0;
+                    b.yPos = oldY;
+                }
             }
         }
     }

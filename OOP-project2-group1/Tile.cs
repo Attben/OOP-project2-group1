@@ -9,7 +9,8 @@ namespace MJU20BreakoutClone
         public string graphicalRepresentation{get; protected set;}
         //protected bool isDestructible;
         
-        public Tile(string ascii, int x = 0, int y = 0, int width = 0, int height = 0)
+        //Default values are arbitrary.
+        public Tile(string ascii, double x = 0, double y = 0, uint width = 1, uint height = 1)
         : base(x, y, width, height)
         {
             graphicalRepresentation = ascii;
