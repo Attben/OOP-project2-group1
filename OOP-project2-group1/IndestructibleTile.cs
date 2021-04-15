@@ -8,6 +8,7 @@ namespace MJU20BreakoutClone
     {
         // "| , -" Char example for tiles
         
-        public IndestructibleTile(string ascii) : base(ascii) { }
+        public IndestructibleTile(string ascii, double x, double y, uint width = 1, uint height = 1)
+        : base(ascii, x, y, width, height) { }
     }
 }

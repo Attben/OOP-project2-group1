@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics; //Stopwatch
 using System.Threading;
@@ -10,21 +10,21 @@ namespace MJU20BreakoutClone
     class Program
     {
         private static GamePlane gamePlane;
-        const double targetFrameRate = 5.0; //placeholder value for testing
+        const double targetFrameRate = 30.0;
         const long millisecondsPerSecond = 1000;
         const long targetFrameDelay = (long)(millisecondsPerSecond / targetFrameRate);
         
-        static void getGameInputs()
+        static void GetGameInputs()
         {
             //NYI
         }
         
-        static void updateGameState(double deltatime)
+        static void UpdateGameState(double deltatime)
         {
-            //NYI
+            gamePlane.UpdateGameState(deltatime);
         }
         
-        static void renderGame()
+        static void RenderGame()
         {
             //TODO: Only re-render locations that have changed since the last frame
             gamePlane.RenderObjects();
@@ -37,7 +37,7 @@ namespace MJU20BreakoutClone
             Console.CursorVisible = false;
             
             //Initialize game state
-            gamePlane = new GamePlane(20, 10); //gamePlane = new GamePlane(Console.WindowWidth, Console.WindowHeight);
+            gamePlane = new GamePlane(Console.WindowWidth, Console.WindowHeight);
             bool running = true;
             Stopwatch stopwatch = Stopwatch.StartNew();
             long previousFrameTime;
@@ -49,16 +49,16 @@ namespace MJU20BreakoutClone
                 previousFrameTime = currentFrameTime;
                 currentFrameTime = stopwatch.ElapsedMilliseconds;
                 long frameDelay = currentFrameTime - previousFrameTime;
-                double deltatime = (double)frameDelay;
+                //Dividing by an arbitrary scaling factor to give deltatime a more desirable size
+                double deltatime = frameDelay / 1000.0;
                 
-                getGameInputs();
-                updateGameState(deltatime);
-                renderGame();
+                GetGameInputs();
+                UpdateGameState(deltatime);
+                RenderGame();
                 
                 if(frameDelay < targetFrameDelay)
                 {
-                    //Thread.Sleep((int)(targetFrameDelay - frameDelay));
-                    Thread.Sleep(2000);
+                    Thread.Sleep((int)(targetFrameDelay - frameDelay));
                 }
             }
         }
