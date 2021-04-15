@@ -15,9 +15,12 @@ namespace MJU20BreakoutClone
             this.ySpeed = ys;
         }
         
-        public void Move(double deltatime)
+        public void MoveX(double deltatime)
         {
             this.xPos += this.xSpeed * deltatime;
+        }
+        public void MoveY(double deltatime)
+        {
             this.yPos += this.ySpeed * deltatime;
         }
     }

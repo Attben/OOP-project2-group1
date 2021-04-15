@@ -10,7 +10,7 @@ namespace MJU20BreakoutClone
     class Program
     {
         private static GamePlane gamePlane;
-        const double targetFrameRate = 5.0; //placeholder value for testing
+        const double targetFrameRate = 60.0;
         const long millisecondsPerSecond = 1000;
         const long targetFrameDelay = (long)(millisecondsPerSecond / targetFrameRate);
         
@@ -49,7 +49,8 @@ namespace MJU20BreakoutClone
                 previousFrameTime = currentFrameTime;
                 currentFrameTime = stopwatch.ElapsedMilliseconds;
                 long frameDelay = currentFrameTime - previousFrameTime;
-                double deltatime = (double)frameDelay;
+                //Dividing by an arbitrary scaling factor to give deltatime a more desirable size
+                double deltatime = frameDelay / 1000.0;
                 
                 GetGameInputs();
                 UpdateGameState(deltatime);

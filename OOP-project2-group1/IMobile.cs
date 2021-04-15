@@ -7,6 +7,8 @@ namespace MJU20BreakoutClone
         public double xSpeed{get; set;}
         public double ySpeed{get; set;}
         
-        public void Move(double deltatime);
+        //Split movement into components to make collision handlers more flexible
+        public void MoveX(double deltatime);
+        public void MoveY(double deltatime);
     }
 }

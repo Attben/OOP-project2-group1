@@ -11,7 +11,7 @@ namespace MJU20BreakoutClone
         public GamePlane(uint width, uint height)
         {
             balls = new List<Ball>();
-            balls.Add(new Ball(10, 10, 1, 1)); //Placeholder parameters
+            balls.Add(new Ball(10, 10, 5, 5)); //Placeholder parameters
             
             //Initialize border tiles
             tiles = new Tile[width, height];
@@ -39,9 +39,12 @@ namespace MJU20BreakoutClone
             //Rectangle MygameplaneArea = new Rectangle();
         }
         
-        public void RenderObjects(){
+        public void RenderObjects()
+        {
             //Draw stationary tiles
             Console.SetCursorPosition(0, 0);
+            //Console.WriteLine("x: " + balls[0].xPos);
+            //Console.WriteLine("y: " + balls[0].yPos);
             for(int height = 0; height < tiles.GetLength(1); ++height){
                 for(int width = 0; width < tiles.GetLength(0); ++width)
                 {
@@ -51,7 +54,8 @@ namespace MJU20BreakoutClone
                 }
                 Console.WriteLine();
             }
-            
+            Console.WriteLine("Ball position (x): " + balls[0].xPos);
+            Console.WriteLine("Ball position (y): " + balls[0].yPos);
             //Draw balls
             foreach(Ball b in balls)
             {
@@ -62,7 +66,11 @@ namespace MJU20BreakoutClone
         
         public void UpdateGameState(double deltatime)
         {
-            
+            foreach(Ball b in balls)
+            {
+                b.MoveX(deltatime);
+                b.MoveY(deltatime);
+            }
         }
     }
 }
