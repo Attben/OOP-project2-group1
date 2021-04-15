@@ -37,7 +37,8 @@ namespace MJU20BreakoutClone
             Console.CursorVisible = false;
             
             //Initialize game state
-            gamePlane = new GamePlane(Console.WindowWidth, Console.WindowHeight);
+            gamePlane = new GamePlane(60, 30);
+            //gamePlane = new GamePlane(Console.WindowWidth, Console.WindowHeight);
             bool running = true;
             Stopwatch stopwatch = Stopwatch.StartNew();
             long previousFrameTime;
