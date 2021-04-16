@@ -5,8 +5,9 @@ namespace MJU20BreakoutClone
 {
     class GamePlane
     {
-        List<Ball> balls;
-        Tile[,] tiles;
+        private List<Ball> balls;
+        private Tile[,] tiles;
+        private uint score = 0;
         
         public GamePlane(uint width, uint height)
         {
@@ -73,8 +74,14 @@ namespace MJU20BreakoutClone
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("Ball position (x): " + balls[0].xPos);
-            Console.WriteLine("Ball position (y): " + balls[0].yPos);
+            Console.WriteLine("Score: " + score + " points");
+            //Console.WriteLine("Ball position (x): " + balls[0].xPos);
+            //Console.WriteLine("Ball position (y): " + balls[0].yPos);
+        }
+        
+        public void GainPoints(uint points)
+        {
+            score += points;
         }
         
         public void RenderObjects()
