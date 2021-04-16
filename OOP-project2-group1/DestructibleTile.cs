@@ -8,11 +8,11 @@ namespace MJU20BreakoutClone
     {
         private int explosionAnimationTimer = 0;
         public event TileCallback destructionCallback;
-		GamePlane parentGamePlane;
+        GamePlane parentGamePlane;
         
         public DestructibleTile(double x, double y, GamePlane gp) : base("D", x, y)
         {
-			parentGamePlane = gp;
+            parentGamePlane = gp;
             destructionCallback += new TileCallback(gp.DestroyTile);
         }
         
@@ -20,7 +20,7 @@ namespace MJU20BreakoutClone
         {
             ++explosionAnimationTimer;
             graphicalRepresentation = "X";
-			parentGamePlane.GainPoints(1);
+            parentGamePlane.GainPoints(1);
         }
         
         public override void Render()
