@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +6,6 @@ namespace MJU20BreakoutClone
 {
     class DestructibleTile : Tile
     {
-        // "| , -" Char example for tiles
         private int explosionAnimationTimer = 0;
         public event TileCallback destructionCallback;
         
