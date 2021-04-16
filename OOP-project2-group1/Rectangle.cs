@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MJU20BreakoutClone
 {
-    abstract class Rectangle
+    public abstract class Rectangle
     {
         public double xPos { get; set; }
         public double yPos { get; set; }
@@ -24,7 +24,7 @@ namespace MJU20BreakoutClone
             
         }
         
-        public bool CollidesWith(Rectangle rect2)
+        public virtual bool CollidesWith(Rectangle rect2)
         {
             if(rect2 == null)
             {
