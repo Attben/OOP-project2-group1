@@ -1,25 +1,45 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOP-project2-group1", "OOP-project2-group1\OOP-project2-group1.csproj", "{35917B19-FBE3-48F4-80B6-E4088007259E}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{35917B19-FBE3-48F4-80B6-E4088007259E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35917B19-FBE3-48F4-80B6-E4088007259E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35917B19-FBE3-48F4-80B6-E4088007259E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35917B19-FBE3-48F4-80B6-E4088007259E}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5FA4D99A-9811-424A-92C7-A4EC89591614}
-	EndGlobalSection
-EndGlobal
+using System;
+
+namespace Paddletest
+{
+    
+        
+        class Program
+        {
+            private class Paddle : IndestructibleTile, IMobile
+            {
+                public Paddle(double x, double y, double xs, double ys) : base("====================", x, y)
+            {
+                    this.xSpeed = xs;
+                    this.ySpeed = ys;
+                }
+                public double xSpeed { get; set; }
+                public double ySpeed { get; set; }
+                public void MoveX(double deltatime)
+                {
+                    this.xPos += this.xSpeed * deltatime;
+                }
+                public void checkKey()
+                {
+                    ConsoleKeyInfo cki;
+                    while (true)
+                    {
+                        cki = Console.ReadKey();
+                        if (cki.Key == ConsoleKey.D)
+                        {
+                            this.xSpeed = 2;
+                            
+                        }
+                        if(cki.Key == ConsoleKey.A)
+                        {
+                           this.xSpeed = -2;
+                        }
+                        if (cki.Key == ConsoleKey.Escape)
+                            break;
+                    }
+                }
+            }
+        }
+    
+}
