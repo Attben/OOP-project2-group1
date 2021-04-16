@@ -11,7 +11,7 @@ namespace MJU20BreakoutClone
         public GamePlane(uint width, uint height)
         {
             balls = new List<Ball>();
-            balls.Add(new Ball(10, 10, 5, 5)); //Placeholder parameters
+            balls.Add(new Ball(10, 10, 10, 10)); //Placeholder parameters
             
             //Initialize border tiles
             tiles = new Tile[width, height];
@@ -35,31 +35,56 @@ namespace MJU20BreakoutClone
                 tiles[0, n] = new IndestructibleTile("║", 0, n);
                 tiles[width-1, n] = new IndestructibleTile("║", width-1, n);
             }
+            
+            //Add a few rows of destructible tiles
+            for(int row = 1; row < 5; ++row)
+            {
+                for(int col = 1; col < width-1; ++col)
+                {
+                    tiles[col, row] = new DestructibleTile(col, row, this);
+                }
+            }
+            //Draw all the tiles once.
+            DrawBoard();
         }
         
-        public void RenderObjects()
+        public void DestroyTile(Tile tile)
+        {
+            tiles[(int)tile.xPos, (int)tile.yPos] = null;
+        }
+        
+        private void DrawBoard()
         {
             //Draw stationary tiles
             Console.SetCursorPosition(0, 0);
-            //Console.WriteLine("x: " + balls[0].xPos);
-            //Console.WriteLine("y: " + balls[0].yPos);
             for(int height = 0; height < tiles.GetLength(1); ++height)
             {
                 for(int width = 0; width < tiles.GetLength(0); ++width)
                 {
-                    string charsToRender = 
-                    (tiles[width, height] == null ? " " : tiles[width, height].graphicalRepresentation);
-                    Console.Write(charsToRender);
+                    Tile tile = tiles[width, height];
+                    if(tile == null)
+                    {
+                        Console.Write(" ");
+                    }
+                    else
+                    {
+                        tile.Render();
+                    }
                 }
                 Console.WriteLine();
             }
             Console.WriteLine("Ball position (x): " + balls[0].xPos);
             Console.WriteLine("Ball position (y): " + balls[0].yPos);
+        }
+        
+        public void RenderObjects()
+        {
+            //Draw stationary tiles
+            DrawBoard();
             //Draw balls
             foreach(Ball b in balls)
             {
-                Console.SetCursorPosition((int)b.xPos, (int)b.yPos);
-                Console.Write(b.graphicalRepresentation);
+                b.Render();
             }
         }
         
@@ -71,8 +96,8 @@ namespace MJU20BreakoutClone
                 //if the movement makes it collide with a solid tile.
                 double oldX = b.xPos;
                 b.MoveX(deltatime);
-                //Tile xAdjacentTile = tiles[(int)b.xPos + 1*Math.Sign(b.xSpeed), (int)b.yPos];
-                if(b.CollidesWith(tiles[(int)b.xPos, (int)b.yPos]))
+                Tile adjacentTile = tiles[(int)b.xPos, (int)b.yPos];
+                if(adjacentTile != null && adjacentTile.CollidesWith(b))
                 {
                     //Collided in x-direction. Reverse xSpeed and put the ball back.
                     b.xSpeed *= -1.0;
@@ -81,8 +106,8 @@ namespace MJU20BreakoutClone
                 
                 double oldY = b.yPos;
                 b.MoveY(deltatime);
-                //Tile yAdjacentTile = tiles[(int)b.xPos, (int)b.yPos + 1*Math.Sign(b.ySpeed)];
-                if(b.CollidesWith(tiles[(int)b.xPos, (int)b.yPos]))
+                adjacentTile = tiles[(int)b.xPos, (int)b.yPos];
+                if(adjacentTile != null && adjacentTile.CollidesWith(b))
                 {
                     b.ySpeed *= -1.0;
                     b.yPos = oldY;
