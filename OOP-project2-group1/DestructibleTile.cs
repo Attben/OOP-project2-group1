@@ -6,8 +6,6 @@ namespace MJU20BreakoutClone
 {
     class DestructibleTile : Tile
     {
-        // "| , -" Char example for tiles
-        
         public DestructibleTile(string ascii) : base(ascii){ }
         
         public void Destroy()
