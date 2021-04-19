@@ -16,7 +16,14 @@ namespace MJU20BreakoutClone
         
         static void GetGameInputs()
         {
-            //NYI
+            if(Console.KeyAvailable)
+            {
+                gamePlane.HandleInputs(Console.ReadKey(true));
+            }
+            else
+            {
+                gamePlane.HandleEmptyInput();
+            }
         }
         
         static void UpdateGameState(double deltatime)
