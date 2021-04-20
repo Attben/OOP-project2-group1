@@ -161,7 +161,7 @@ namespace MJU20BreakoutClone
                     ball.xSpeed *= -1.0;
                     ball.xPos = oldX;
                 }
-                if ((int)ball.yPos == height - 2)
+                if ((int)ball.yPos >= height - 2)
                 {
                     ball.xSpeed = 0;
                     ball.ySpeed = 0;
