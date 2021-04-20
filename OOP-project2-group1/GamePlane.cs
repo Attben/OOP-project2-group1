@@ -161,6 +161,13 @@ namespace MJU20BreakoutClone
                     ball.xSpeed *= -1.0;
                     ball.xPos = oldX;
                 }
+                if ((int)ball.yPos == height - 2)
+                {
+                    ball.xSpeed = 0;
+                    ball.ySpeed = 0;
+                    Console.SetCursorPosition(23, 15);
+                    Console.WriteLine("You have lost!");
+                }
                 foreach(Paddle paddle in paddles)
                 {
                     if(paddle.CollidesWith(ball))
