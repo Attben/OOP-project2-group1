@@ -138,7 +138,17 @@ namespace MJU20BreakoutClone
         //TODO: Refactor to reduce code duplication
         public void UpdateGameState(double deltatime)
         {
-            foreach(Ball ball in balls)
+            if (score == 232)
+            {
+                foreach (Ball ball in balls)
+                {
+                    ball.xSpeed = 0;
+                    ball.ySpeed = 0;
+                }
+                Console.SetCursorPosition(23, 15);
+                Console.WriteLine("You have Won!");
+            }
+            foreach (Ball ball in balls)
             {
                 //Save old position so the ball can be put back
                 //if the movement makes it collide with a solid tile.
@@ -198,6 +208,7 @@ namespace MJU20BreakoutClone
                     p.ySpeed = 0;
                 }
             }
+            
         }
     }
 }
